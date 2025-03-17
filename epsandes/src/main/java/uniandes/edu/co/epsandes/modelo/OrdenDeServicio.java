@@ -1,5 +1,4 @@
 package uniandes.edu.co.epsandes.modelo;
-import java.sql.Time;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
@@ -21,19 +20,18 @@ public class OrdenDeServicio{
 
     private Date fecha;
 
-    private Time hora;
+    private Date hora;
 
     private String estado_orden;
 
-    private String tipo_servicio;
-
     public OrdenDeServicio(){;}
 
-    public OrdenDeServicio(Date fecha, Time hora, String estado_orden, String tipo_servicio){
+    public OrdenDeServicio(Date fecha, Date hora, String estado_orden, Medico medico_numerodocumento, Afiliado afiliado_numerodocumento) {
         this.fecha = fecha;
         this.hora = hora;
         this.estado_orden = estado_orden;
-        this.tipo_servicio = tipo_servicio;
+        this.medico_numerodocumento = medico_numerodocumento;
+        this.afiliado_numerodocumento = afiliado_numerodocumento;
     }
     @ManyToOne
     @JoinColumn(name="medico_numerodocumento", referencedColumnName="numeroDocumento")
@@ -56,11 +54,11 @@ public class OrdenDeServicio{
         this.fecha = fecha;
     }
 
-    public Time getHora() {
+    public Date getHora() {
         return hora;
     }
 
-    public void setHora(Time hora) {
+    public void setHora(Date hora) {
         this.hora = hora;
     }
 
@@ -72,11 +70,12 @@ public class OrdenDeServicio{
         this.estado_orden = estado_orden;
     }
 
-    public String getTipo_servicio() {
-        return tipo_servicio;
+    public Medico getMedico_numerodocumento() {
+        return medico_numerodocumento;
     }
 
-    public void setTipo_servicio(String tipo_servicio) {
-        this.tipo_servicio = tipo_servicio;
+    public Afiliado getAfiliado_numerodocumento() {
+        return afiliado_numerodocumento;
     }
+
 }

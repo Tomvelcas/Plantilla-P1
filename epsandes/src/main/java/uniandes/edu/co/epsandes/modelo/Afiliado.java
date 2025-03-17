@@ -36,16 +36,19 @@ public class Afiliado{
     public Afiliado()
     {;}
 
-    public Afiliado( String tipo_documento, Integer numero_documento, String nombre, Date fecha_nacimiento, String direccion, Integer telefono, String tipo_afiliado)
+    public Afiliado( String tipo_documento, Integer numero_documento, String nombre, Date fecha_nacimiento, String direccion, Integer telefono, String tipo_afiliado, Afiliado contribuyente, String parentesco)
     {
         this.tipo_documento = tipo_documento;
-        this.numeroDocumento = numeroDocumento;
+        this.numeroDocumento = numero_documento;
         this.nombre = nombre;
         this.fecha_nacimiento = fecha_nacimiento;
         this.direccion = direccion;
         this.telefono = telefono;
         this.tipo_afiliado = tipo_afiliado;
+        this.contribuyente = contribuyente;
+        this.parentesco = parentesco;
     }
+
     private String getTipo_documento()
     {
         return tipo_documento;

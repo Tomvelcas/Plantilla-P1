@@ -1,6 +1,5 @@
 package uniandes.edu.co.epsandes.modelo;
 import java.sql.Date;
-import java.sql.Time;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,16 +18,8 @@ public class AgendarCita {
 
     private Date fecha;
 
-    private Time hora;
+    private Date hora;
 
-
-    public AgendarCita(){;} 
-
-    public AgendarCita(Date fecha, Time hora)
-    {
-        this.fecha = fecha;
-        this.hora = hora;
-    }
     @ManyToOne
     @JoinColumn(name="afiliado_numerodocumento", referencedColumnName="numeroDocumento")
     private Afiliado afiliado_numerodocumento;
@@ -40,6 +31,23 @@ public class AgendarCita {
     @ManyToOne
     @JoinColumn(name="id_ordendeservicio", referencedColumnName="id")
     private OrdenDeServicio id_ordendeservicio;
+
+    @ManyToOne
+    @JoinColumn(name="id_serviciodesalud", referencedColumnName="id")
+    private ServicioDeSalud id_serviciodesalud;
+
+
+    public AgendarCita(){;} 
+
+    public AgendarCita(Date fecha, Date hora, Afiliado afiliado_numerodocumento, Medico medico_numerodocumento, OrdenDeServicio id_ordendeservicio, ServicioDeSalud id_serviciodesalud) {
+        this.fecha = fecha;
+        this.hora = hora;
+        this.afiliado_numerodocumento = afiliado_numerodocumento;
+        this.medico_numerodocumento = medico_numerodocumento;
+        this.id_ordendeservicio = id_ordendeservicio;
+        this.id_serviciodesalud = id_serviciodesalud;
+    }
+    
     
     public Integer getId() {
         return id;
@@ -61,7 +69,7 @@ public class AgendarCita {
         return fecha;
     }
 
-    public Time getHora() {
+    public Date getHora() {
         return hora;
     }
 
@@ -69,9 +77,15 @@ public class AgendarCita {
         this.fecha = fecha;
     }
 
-    public void setHora(Time hora) {
+    public void setHora(Date hora) {
         this.hora = hora;
     }
+
+    public ServicioDeSalud getId_serviciodesalud() {
+        return id_serviciodesalud;
+    }
+
+
 
 
     @Override

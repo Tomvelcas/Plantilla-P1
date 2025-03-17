@@ -19,11 +19,13 @@ public class Medico {
 
     public Medico() {;}
 
-    public Medico(String nombre, String tipoDocumento, Integer numeroDocumento, Integer numeroRegistroMedico, String especialidad) {
+    public Medico(String nombre, String tipoDocumento, Integer numeroDocumento, Integer numeroRegistroMedico, String especialidad, Ips ips_nit) {
         this.nombre = nombre;
         this.tipoDocumento = tipoDocumento;
         this.numeroDocumento = numeroDocumento;
+        this.numeroRegistroMedico = numeroRegistroMedico;
         this.especialidad = especialidad;
+        this.ips_nit = ips_nit;
     }
 
     @ManyToOne 
