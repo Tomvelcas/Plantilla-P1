@@ -25,8 +25,8 @@ public interface ServicioOrdenRepository extends JpaRepository<ServicioOrden, Se
     @Query("INSERT INTO ServicioOrden (orden_id, servicioDeSalud_id) VALUES (:ordenId, :servicioId)")
     void insertarServicioOrden(Integer ordenId, Integer servicioId);
 
-    @Query("UPDATE ServicioOrden s SET s.pk.servicioDeSalud.id = :servicioId WHERE s.pk.orden.id = :ordenId AND s.pk.servicioDeSalud.id = :servicioId")
-    void actualizarServicioOrden(Integer ordenId, Integer servicioId);
+    @Query("UPDATE ServicioOrden s SET s.pk.orden.id = :ordenIdActualizado, s.pk.servicioDeSalud.id = :servicioIdActualizado WHERE s.pk.orden.id = :ordenId AND s.pk.servicioDeSalud.id = :servicioId")
+    void actualizarServicioOrden(Integer ordenId, Integer servicioId, Integer servicioIdActualizado, Integer ordenIdActualizado);
 
 
 

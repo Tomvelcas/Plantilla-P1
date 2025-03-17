@@ -25,11 +25,20 @@ public interface AgendarCitaRepository extends JpaRepository<AgendarCita, Intege
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE AgendarCita SET fecha = :fecha, hora = :hora WHERE id = :id", nativeQuery = true)
-    void actualizarAgendarCita(@Param("id") long id, @Param("fecha") java.sql.Date fecha, @Param("hora") java.sql.Time hora);
+    @Query(value = "UPDATE AgendarCita SET fecha = :fecha_hora WHERE id = :id", nativeQuery = true)
+    void actualizarAgendarCita(@Param("id") long id, @Param("fecha_hora") java.sql.Timestamp fecha_hora);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO AgendarCita (id, fecha, hora) VALUES (epsandes_sequence.nextval, :fecha, :hora)", nativeQuery = true)
-    void insertarAgendarCita(@Param("fecha") java.sql.Date fecha, @Param("hora") java.sql.Time hora);
+    @Query(value = "INSERT INTO AgendarCita (id, fecha_hora, afiliado_numerodocumento, medico_numerodocumento, id_ordendeservicio, id_serviciodesalud) " +
+                   "VALUES (:id, :fecha, :afiliado, :medico, :orden, :servicio)", nativeQuery = true)
+    void agregarAgendarCita(@Param("id") long id, @Param("fecha_hora") java.sql.Timestamp fecha_hora, @Param("afiliado") long afiliado, @Param("medico") long medico, @Param("orden") long orden, @Param("servicio") long servicio);
+
+    @Query(value = "SELECT * FROM AgendarCita " +
+                   "WHERE ServicioSalud_ID = :idServicio " +
+                   "AND Fecha_hora BETWEEN CURRENT_DATE AND DATE_ADD(CURRENT_DATE, INTERVAL 4 WEEK)", 
+           nativeQuery = true)
+    Collection<AgendarCita> darAgendarCitasPorServicioCuatroSemanas(@Param("idServicio") long idServicio);
+
+
 }

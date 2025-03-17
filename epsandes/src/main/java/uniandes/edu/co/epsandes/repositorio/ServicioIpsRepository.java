@@ -31,7 +31,7 @@ public interface ServicioIpsRepository extends JpaRepository<ServicioIps, Servic
 
     @Modifying
     @Transactional
-    @Query("UPDATE ServicioIps s SET s.pk.id_serviciodesalud.id = :servicioId WHERE s.pk.nit.nit = :nit AND s.pk.id_serviciodesalud.id = :servicioId")
-    void actualizarServicioIps(@Param("nit") Integer nit, @Param("servicioId") Integer servicioId);
+    @Query("UPDATE ServicioIps s SET s.pk.id_serviciodesalud.id = :servicioIdActualizado WHERE s.pk.nit.nit = :nit AND s.pk.id_serviciodesalud.id = :servicioId")
+    void actualizarServicioIps(@Param("nit") Integer nit, @Param("servicioId") Integer servicioId, @Param("servicioIdActualizado") Integer servicioIdActualizado);
 
 }

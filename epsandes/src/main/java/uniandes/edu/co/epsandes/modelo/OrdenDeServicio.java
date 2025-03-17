@@ -1,5 +1,5 @@
 package uniandes.edu.co.epsandes.modelo;
-import java.util.Date;
+import java.sql.Timestamp;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,17 +18,14 @@ public class OrdenDeServicio{
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
-    private Date fecha;
-
-    private String hora;
+    private Timestamp fecha_hora;
 
     private String estado_orden;
 
     public OrdenDeServicio(){;}
 
-    public OrdenDeServicio(Date fecha, String hora, String estado_orden, Medico medico_numerodocumento, Afiliado afiliado_numerodocumento) {
-        this.fecha = fecha;
-        this.hora = hora;
+    public OrdenDeServicio(Timestamp fecha_hora, String estado_orden, Medico medico_numerodocumento, Afiliado afiliado_numerodocumento) {
+        this.fecha_hora = fecha_hora;
         this.estado_orden = estado_orden;
         this.medico_numerodocumento = medico_numerodocumento;
         this.afiliado_numerodocumento = afiliado_numerodocumento;
@@ -46,20 +43,12 @@ public class OrdenDeServicio{
         return id;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public Timestamp getFecha_hora() {
+        return fecha_hora;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
+    public void setFecha_hora(Timestamp fecha) {
+        this.fecha_hora = fecha_hora;
     }
 
     public String getEstado_orden() {

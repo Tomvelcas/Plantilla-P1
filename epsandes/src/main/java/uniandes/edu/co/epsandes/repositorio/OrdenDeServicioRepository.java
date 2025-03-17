@@ -1,8 +1,7 @@
 package uniandes.edu.co.epsandes.repositorio;
 
-import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -27,22 +26,18 @@ public interface OrdenDeServicioRepository extends JpaRepository<OrdenDeServicio
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE OrdenDeServicio SET fecha = :fecha, hora = :hora, estado_orden = :estado_orden, tipo_servicio = :tipo_servicio, medico_numerodocumento, afiliado_numerodocumento WHERE id = :id", nativeQuery = true)
+    @Query(value = "UPDATE OrdenDeServicio SET fecha = :fecha_hora, estado_orden = :estado_orden, medico_numerodocumento, afiliado_numerodocumento WHERE id = :id", nativeQuery = true)
     void actualizarOrdenDeServicio(@Param("id") Integer id, 
-                         @Param("fecha") Date fecha, 
-                         @Param("hora") Time hora, 
+                         @Param("fecha_hora") Timestamp fecha_hora, 
                          @Param("estado_orden") String estadoOrden, 
-                         @Param("tipo_servicio") String tipoServicio, 
                          @Param("medico_numerodocumento") Integer medico_numerodocumento, 
                          @Param("afiliado_numerodocumento") Integer afiliado_numerodocumento);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO OrdenDeServicio (fecha, hora, estado_orden, tipo_servicio, medico_numerodocumento, afiliado_numerodocumento) VALUES (:fecha, :hora, :estado_orden, :tipo_servicio, :medicoId, :afiliadoId)", nativeQuery = true)
-    void insertarOrdeDeServicio(@Param("fecha") Date fecha, 
-                       @Param("hora") Time hora, 
+    @Query(value = "INSERT INTO OrdenDeServicio (fecha_hora, estado_orden, tipo_servicio, medico_numerodocumento, afiliado_numerodocumento) VALUES (:fecha, :hora, :estado_orden, :tipo_servicio, :medicoId, :afiliadoId)", nativeQuery = true)
+    void insertarOrdeDeServicio(@Param("fecha_hora") Timestamp fecha_hora, 
                        @Param("estado_orden") String estadoOrden, 
-                       @Param("tipo_servicio") String tipoServicio, 
                        @Param("medico_numerodocumento") Integer medico_numerodocumento, 
                        @Param("afiliado_numerodocumento") Integer afiliado_numerodocumento);
 }

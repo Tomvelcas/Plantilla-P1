@@ -1,5 +1,5 @@
 package uniandes.edu.co.epsandes.modelo;
-import java.sql.Date;
+import java.security.Timestamp;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,9 +16,7 @@ public class AgendarCita {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
-    private Date fecha;
-
-    private String hora;
+    private Timestamp fecha_hora;
 
     @ManyToOne
     @JoinColumn(name="afiliado_numerodocumento", referencedColumnName="numeroDocumento")
@@ -39,9 +37,8 @@ public class AgendarCita {
 
     public AgendarCita(){;} 
 
-    public AgendarCita(Date fecha, String hora, Afiliado afiliado_numerodocumento, Medico medico_numerodocumento, OrdenDeServicio id_ordendeservicio, ServicioDeSalud id_serviciodesalud) {
-        this.fecha = fecha;
-        this.hora = hora;
+    public AgendarCita(Timestamp fecha_hora, Afiliado afiliado_numerodocumento, Medico medico_numerodocumento, OrdenDeServicio id_ordendeservicio, ServicioDeSalud id_serviciodesalud) {
+        this.fecha_hora = fecha_hora;
         this.afiliado_numerodocumento = afiliado_numerodocumento;
         this.medico_numerodocumento = medico_numerodocumento;
         this.id_ordendeservicio = id_ordendeservicio;
@@ -65,21 +62,14 @@ public class AgendarCita {
         return id_ordendeservicio;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public Timestamp getFecha_hora() {
+        return fecha_hora;
     }
 
-    public String getHora() {
-        return hora;
+    public void setFecha(Timestamp fecha_hora) {
+        this.fecha_hora = fecha_hora;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
 
     public ServicioDeSalud getId_serviciodesalud() {
         return id_serviciodesalud;
@@ -91,7 +81,7 @@ public class AgendarCita {
     @Override
     public String toString()
     {
-        return this.fecha+"|"+this.hora+"|"+"Afiliado: "+this.afiliado_numerodocumento+"|"+"Medico: "+this.medico_numerodocumento+"|"+"Orden de servicio: "+this.id_ordendeservicio;
+        return this.fecha_hora+"|"+"Afiliado: "+this.afiliado_numerodocumento+"|"+"Medico: "+this.medico_numerodocumento+"|"+"Orden de servicio: "+this.id_ordendeservicio;
     }
     
 }

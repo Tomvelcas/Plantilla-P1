@@ -40,8 +40,9 @@ public interface AfiliadoRepository extends JpaRepository<Afiliado, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Afiliado (numeroDocumento, tipo_documento, nombre, fecha_nacimiento, direccion, telefono, tipo_afiliado, documento_contribuyente, parentesco) VALUES (:numeroDocumento, :tipo_documento, :nombre, :fecha_nacimiento, :direccion, :telefono, :tipo_afiliado, :documento_contribuyente, :parentesco)", nativeQuery = true)
-    void insertarAfiliado(
+    @Query(value = "INSERT INTO Afiliado (numeroDocumento, tipo_documento, nombre, fecha_nacimiento, direcion, telefono, tipo_afiliado, documento_contribuyente, parentesco) " +
+                   "VALUES (:numeroDocumento, :tipo_documento, :nombre, :fecha_nacimiento, :direccion, :telefono, :tipo_afiliado, :documento_contribuyente, :parentesco)", nativeQuery = true)
+    void agregarAfiliado(
         @Param("numeroDocumento") Integer numeroDocumento,
         @Param("tipo_documento") String tipo_documento,
         @Param("nombre") String nombre,
