@@ -18,7 +18,7 @@ public class AgendarCita {
 
     private Date fecha;
 
-    private Date hora;
+    private String hora;
 
     @ManyToOne
     @JoinColumn(name="afiliado_numerodocumento", referencedColumnName="numeroDocumento")
@@ -39,7 +39,7 @@ public class AgendarCita {
 
     public AgendarCita(){;} 
 
-    public AgendarCita(Date fecha, Date hora, Afiliado afiliado_numerodocumento, Medico medico_numerodocumento, OrdenDeServicio id_ordendeservicio, ServicioDeSalud id_serviciodesalud) {
+    public AgendarCita(Date fecha, String hora, Afiliado afiliado_numerodocumento, Medico medico_numerodocumento, OrdenDeServicio id_ordendeservicio, ServicioDeSalud id_serviciodesalud) {
         this.fecha = fecha;
         this.hora = hora;
         this.afiliado_numerodocumento = afiliado_numerodocumento;
@@ -69,7 +69,7 @@ public class AgendarCita {
         return fecha;
     }
 
-    public Date getHora() {
+    public String getHora() {
         return hora;
     }
 
@@ -77,7 +77,7 @@ public class AgendarCita {
         this.fecha = fecha;
     }
 
-    public void setHora(Date hora) {
+    public void setHora(String hora) {
         this.hora = hora;
     }
 

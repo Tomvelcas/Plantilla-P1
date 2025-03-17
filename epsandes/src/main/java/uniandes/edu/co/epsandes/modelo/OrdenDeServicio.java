@@ -20,13 +20,13 @@ public class OrdenDeServicio{
 
     private Date fecha;
 
-    private Date hora;
+    private String hora;
 
     private String estado_orden;
 
     public OrdenDeServicio(){;}
 
-    public OrdenDeServicio(Date fecha, Date hora, String estado_orden, Medico medico_numerodocumento, Afiliado afiliado_numerodocumento) {
+    public OrdenDeServicio(Date fecha, String hora, String estado_orden, Medico medico_numerodocumento, Afiliado afiliado_numerodocumento) {
         this.fecha = fecha;
         this.hora = hora;
         this.estado_orden = estado_orden;
@@ -54,11 +54,11 @@ public class OrdenDeServicio{
         this.fecha = fecha;
     }
 
-    public Date getHora() {
+    public String getHora() {
         return hora;
     }
 
-    public void setHora(Date hora) {
+    public void setHora(String hora) {
         this.hora = hora;
     }
 
