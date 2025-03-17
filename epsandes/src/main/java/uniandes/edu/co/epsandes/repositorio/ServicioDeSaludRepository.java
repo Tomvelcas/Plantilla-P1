@@ -37,4 +37,10 @@ public interface ServicioDeSaludRepository extends JpaRepository<ServicioDeSalud
     void insertarServicioDeSalud(@Param("nombre") String nombre, 
                           @Param("descripcion") String descripcion, 
                           @Param("tipo") String tipo);
+
+
+    @Query(value = "SELECT COUNT(DISTINCT id_servicio) FROM ServicioDeSalud", nativeQuery = true)
+    Integer darNumeroDeTiposDeServiciosDeSaludDisponibles();
+
 }
+    

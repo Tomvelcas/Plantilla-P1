@@ -25,8 +25,8 @@ public interface AgendarCitaRepository extends JpaRepository<AgendarCita, Intege
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE AgendarCita SET fecha = :fecha_hora WHERE id = :id", nativeQuery = true)
-    void actualizarAgendarCita(@Param("id") long id, @Param("fecha_hora") java.sql.Timestamp fecha_hora);
+    @Query(value = "UPDATE AgendarCita SET afiliado_numerodocumento = :afiliado_numeroDocumento, medico_numerodocumento = :medico_numeroDocumento, id_ordendeservicio = :orden_id, id_serviciodesalud = :servicio_id WHERE id = :id", nativeQuery = true)
+    void actualizarAgendarCita(@Param("id") long id, @Param("afiliado_numeroDocumento") long afiliado_numeroDocumento, @Param("medico_numeroDocumento") long medico_numeroDocumento, @Param("orden_id") long orden_id, @Param("servicio_id") long servicio_id);
 
     @Modifying
     @Transactional
@@ -35,10 +35,17 @@ public interface AgendarCitaRepository extends JpaRepository<AgendarCita, Intege
     void agregarAgendarCita(@Param("id") long id, @Param("fecha_hora") java.sql.Timestamp fecha_hora, @Param("afiliado") long afiliado, @Param("medico") long medico, @Param("orden") long orden, @Param("servicio") long servicio);
 
     @Query(value = "SELECT * FROM AgendarCita " +
-                   "WHERE ServicioSalud_ID = :idServicio " +
+                   "WHERE ServicioDeSalud_ID = :idServicio " +
                    "AND Fecha_hora BETWEEN CURRENT_DATE AND DATE_ADD(CURRENT_DATE, INTERVAL 4 WEEK)", 
            nativeQuery = true)
     Collection<AgendarCita> darAgendarCitasPorServicioCuatroSemanas(@Param("idServicio") long idServicio);
+
+    @Query(value = "SELECT COUNT(DISTINCT ServicioDeSalud_ID) FROM AgendarCita", nativeQuery = true)
+    Integer darNumeroDeServiciosDeSaludUsados();
+
+
+
+
 
 
 }
